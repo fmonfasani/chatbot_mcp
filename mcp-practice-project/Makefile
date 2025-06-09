@@ -1,4 +1,4 @@
-.PHONY: help install build test clean run-python run-typescript demo
+PHONY: help install build test clean run-python run-typescript demo
 
 help:
 	@echo "Comandos disponibles:"
@@ -13,12 +13,15 @@ help:
 install:
 	@echo "📦 Instalando dependencias Python..."
 	cd python-server && pip install -r requirements.txt
-	@echo "📦 Instalando dependencias TypeScript..."
+	@echo "📦 Instalando dependencias TypeScript (servidor)..."
 	cd typescript-server && npm install
+	@echo "📦 Instalando dependencias TypeScript (cliente)..."
+	cd client-examples && npm install
 
 build:
-	@echo "🔨 Compilando TypeScript..."
+	@echo "🔨 Compilando servidor TypeScript..."
 	cd typescript-server && npm run build
+	@echo "✅ Compilación completada"
 
 test:
 	@echo "🧪 Ejecutando tests Python..."
@@ -43,4 +46,28 @@ run-typescript:
 
 demo:
 	@echo "🎮 Ejecutando demo completo..."
-	cd client-examples && python python_client.py
+	@echo "Asegúrate de que los servidores estén compilados..."
+	$(MAKE) build
+	@echo ""
+	@echo "🐍 Demo Python:"
+	cd client-examples && python python_client.py || echo "Error en demo Python - verifica que el servidor esté funcionando"
+	@echo ""
+	@echo "📘 Demo TypeScript:"
+	cd client-examples && npx tsx typescript_client.ts || echo "Error en demo TypeScript - verifica que el servidor esté funcionando"
+
+# Comandos adicionales útiles
+dev-python:
+	@echo "🔄 Modo desarrollo Python (con auto-reload)..."
+	cd python-server && python -u server.py
+
+dev-typescript:
+	@echo "🔄 Modo desarrollo TypeScript (con auto-reload)..."
+	cd typescript-server && npm run dev
+
+setup: install build
+	@echo "✅ Setup completo - proyecto listo para usar"
+	@echo ""
+	@echo "🚀 Próximos pasos:"
+	@echo "   make run-python      # o"
+	@echo "   make run-typescript  # en terminales separadas"
+	@echo "   make demo           # para probar"
