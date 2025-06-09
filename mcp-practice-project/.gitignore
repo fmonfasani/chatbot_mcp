@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Build outputs
+dist/
+*.egg-info/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Runtime
+*.pid
+*.seed
+*.lock
+.npm
+.eslintcache
+
+# Coverage
+coverage/
+.nyc_output/
+.coverage
+
+# Temporary
+tmp/
+temp/
