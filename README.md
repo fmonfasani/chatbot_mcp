@@ -1,12 +1,12 @@
 🎉 ** Proyecto MCP **
 
 📁 **Estructura creada:**
-´´´bash
+```bash
 ├── python-server/ (Servidor MCP en Python)
 ├── typescript-server/ (Servidor MCP en TypeScript)
 ├── client-examples/ (Ejemplos de clientes)
 └── docs/ (Documentación)
-´´´
+```
 
 🚀 **Setup:**
 1. `cd mcp-practice-project`
